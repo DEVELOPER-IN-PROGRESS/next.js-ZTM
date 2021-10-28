@@ -1,0 +1,12 @@
+just some of my random NOTEs regarding next.js 
+
+in the pages/ directory every route name created from '/' will have the name of the .js file index.js being an exception . Even though Home component is 
+exported out from index this still gets the default root . Back in react ecosystem we had to install react router and specify the routes separately , 
+with next.js we have coomponent filename based routing .
+_app.js is the main entry point to our App  we can add any component in this file and present it throughout the app .  
+api/  directory allows you to write backend code alongside front end which is great for most part 
+public/ directory is for storing the static files like images icons etc 
+  styles/ directory contains the  global styles or the styles for individual component which is similar to the scoped styles present in vue 
+
+Css modules are provided by next.js out of the box which will have .module.css file  which will be scoped to that particulAr component so we can use the same class 
+over and over without affecting each other . Under the hood it works by generating dynamic class names to each component so there will be no naming conflict
