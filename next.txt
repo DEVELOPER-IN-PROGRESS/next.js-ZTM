@@ -23,3 +23,7 @@ there are 3 ways of routing in next.js
 
 Link component : inorder to route to various pages we can use native <a> tag provided by the browser . when we use this however there will be a page refresh 
 but with next Link component there is no page refresh however   <Link><a>text</a></Link>
+
+Image component is an extension of <img> component with lots of features like image resizing according to viewport width .
+The Head component used in _discover.js is different from what nextjs provides for us 
+<link rel="preload" as="font" href="path" crossOrigin="anonymous" />
