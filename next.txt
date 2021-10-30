@@ -10,3 +10,16 @@ public/ directory is for storing the static files like images icons etc
 
 Css modules are provided by next.js out of the box which will have .module.css file  which will be scoped to that particulAr component so we can use the same class 
 over and over without affecting each other . Under the hood it works by generating dynamic class names to each component so there will be no naming conflict
+
+
+Heading over to the 'head' component provided by nextjs which allows you to modify head part of every page within the page itself
+
+Routing:: just like react-router uses the History API provided by the browser under the hood to make it more accessible for us . unlike the react router 
+there are 3 ways of routing in next.js 
+ 1)index based : i.e  making a separate file for routing  .For this to happen the page must be a  React component and it should be exported by default 
+ 2) Nested route : routes within the index
+ 3) Dynamic routing : dynamically generated routes from a route  if we use [<any name>].js  file we have a dynamic route  
+
+
+Link component : inorder to route to various pages we can use native <a> tag provided by the browser . when we use this however there will be a page refresh 
+but with next Link component there is no page refresh however   <Link><a>text</a></Link>
