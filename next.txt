@@ -27,3 +27,9 @@ but with next Link component there is no page refresh however   <Link><a>text</a
 Image component is an extension of <img> component with lots of features like image resizing according to viewport width .
 The Head component used in _discover.js is different from what nextjs provides for us 
 <link rel="preload" as="font" href="path" crossOrigin="anonymous" />
+
+Next provides basically 3 types of rendering which are SSG(eg: blog posts) , SSR (eg: news feed) , ISR (eg: twitter feed) and CSR (old react way )
+ISR provides the best of both world features and again  depending on our applicaton we need to decide whats best for us . 
+
+Inorder to combine various classnames together we need to use a separate module named 'classnames'  
+for the purpose of discover coffee project  we arre using a json file for all the data 
