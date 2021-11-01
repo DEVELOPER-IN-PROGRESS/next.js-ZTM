@@ -33,3 +33,11 @@ ISR provides the best of both world features and again  depending on our applica
 
 Inorder to combine various classnames together we need to use a separate module named 'classnames'  
 for the purpose of discover coffee project  we arre using a json file for all the data 
+for using url properties for images we need to configure it inside a next.config file so that the framework is aware of this issue
+For this coffee project we can use SSG by hosting it on CDN and by default next uses SSG  as we are not making any external APi requests 
+next.config.js allows you to configure a lot of thing like .env variables (need to read a bit more on this )
+wecan use getStaticProps for making requerst before page render , for purpose of this project we directly use json within the project itself
+
+the asyn function getStaticProps is purely server side function which means that piece of function wont reach to the client side  so if we can to prefetch 
+some data before it is passed to the client we can do it here . So no user can inspect and look into the code . in other words 
+you are writing client and server side code onto same file 
