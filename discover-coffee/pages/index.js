@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import Banner from '../components/banner/banner'
 import Card from '../components/card/card' ;
-import coffeeStores from '../data/coffee-stores.json' ;
+import coffeeStoresData from '../data/coffee-stores.json' ;
 
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -12,7 +12,7 @@ export async function getStaticProps(context){
   //const data = fetch()
   return {
     props :{
-      coffeeStores , 
+      coffeeStores:coffeeStoresData , 
     }, 
   }
 }
@@ -37,9 +37,9 @@ export default function Home(props) {
         <Image src="/static/hero-image.png" width={700} height={400}/>
         </div>
 
-        {coffeeStores.length >0 && (
+        {props.coffeeStores.length >0 && (
         <>
-        <h2 className={styles.heading}>Toronto Stores</h2>
+        <h2 className={styles.heading2}>Toronto Stores</h2>
 
         <div className={styles.cardLayout}>
           {
