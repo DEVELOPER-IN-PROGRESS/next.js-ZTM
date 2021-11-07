@@ -10,11 +10,12 @@ import styles from '../styles/Home.module.css'
 export async function getStaticProps(context){
   console.log('inside getStaticProps function ')
   //const data = fetch()
-  return {
-    props :{
-      coffeeStores:coffeeStoresData , 
-    }, 
-  }
+  // return {
+  //   props :{
+  //     coffeeStores:coffeeStoresData , 
+  //   }, 
+  // }
+  
 }
 
 

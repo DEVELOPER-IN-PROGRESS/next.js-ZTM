@@ -41,3 +41,13 @@ wecan use getStaticProps for making requerst before page render , for purpose of
 the asyn function getStaticProps is purely server side function which means that piece of function wont reach to the client side  so if we can to prefetch 
 some data before it is passed to the client we can do it here . So no user can inspect and look into the code . in other words 
 you are writing client and server side code onto same file 
+
+getStaticPaths :: another server side function  for rendering dynamic paths on the build time and its important for the page to 
+include getStaticProps in that same page 
+
+if we try to pass an id which is not present and fallback as false we get 404 page
+
+incase of fallback:true  it checks whether the data exists in the db if it does the page is cached in CDN so the next user can get it quicky 
+if not it will resolve to an error
+
+Foursquare api can give you details of places 
