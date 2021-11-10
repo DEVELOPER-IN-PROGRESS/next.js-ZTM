@@ -3,27 +3,30 @@ import Link from 'next/link'  ;
 import Head from 'next/head' ;
 import Image from 'next/image';
 
-import coffeeStoresData from '../../data/coffee-stores.json' ;
-import styles from '../../styles/coffee-store.module.css' ; 
+ import styles from '../../styles/coffee-store.module.css' ; 
 
 import cls from "classnames";
+import { fetchCoffeeStores } from '../../lib/coffee-store';
 
 
-export function getStaticProps(staticProps){
+
+export async  function getStaticProps(staticProps){
    // we can also desetructure {params in fn parameter}
    const params = staticProps.params ; 
    console.log("parameter" , params) ; 
+   const coffeeStores = await fetchCoffeeStores() ; 
    return {
       props:{
-         coffeeStore :  coffeeStoresData.find( (coffeeStores) => {
+         coffeeStore :  coffeeStores.find( (coffeeStores) => {
             return coffeeStores.id.toString() === params.id 
          })
       }
    }
 }
 
-export function getStaticPaths(){
-   const paths = coffeeStoresData.map( (coffeeStore) => {
+export async function getStaticPaths(){
+  const coffeeStores = await fetchCoffeeStores() ; 
+   const paths = coffeeStores.map( (coffeeStore) => {
       return {
          params : {
             id : String(coffeeStore.id) , 
@@ -46,7 +49,7 @@ const CoffeeStore = (props) => {
       return  (<div>Loading...</div>);
    }
 
-   const {address , name , neighbourhood , imgUrl } = props.coffeeStore ;
+   const {location , name , neighborhood , imgUrl } = props.coffeeStore ;
 
    console.log('Props' ,props )
 
@@ -91,9 +94,9 @@ const CoffeeStore = (props) => {
                 height="24"
                 alt="places icon"
               />
-              <p className={styles.text}>{address}</p>
+              <p className={styles.text}>{location.address}</p>
             </div>
-            {neighbourhood && (
+            {location.neighborhood && (
               <div className={styles.iconWrapper}>
                 <Image
                   src="/static/icons/nearMe.svg"
@@ -101,7 +104,8 @@ const CoffeeStore = (props) => {
                   height="24"
                   alt="near me icon"
                 />
-                <p className={styles.text}>{neighbourhood}</p>
+                <p className={styles.text}>{location.neighborhood}</p>
+
               </div>
             )}
             <div className={styles.iconWrapper}>
