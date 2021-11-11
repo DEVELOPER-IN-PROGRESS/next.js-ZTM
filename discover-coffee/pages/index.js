@@ -27,12 +27,12 @@ export async function getStaticProps(){
 export default function Home(props) {
   console.log(props);
 
-  const {handleLocation ,latLong , lErrorMsg  } =  useGeoLocation() ; 
+  const {handleLocation ,latLong , lErrorMsg  , isFindingLocation } =  useGeoLocation() ; 
   console.log({latLong , lErrorMsg}) ; 
 
   const changeButton = () => {
     console.log('Button clicked');
-      useGeoLocation();
+      handleLocation() ; 
   }
   return (
     <div className={styles.container}>
@@ -43,13 +43,17 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-        <Banner buttonText="View stores nearby " handleOnClick={changeButton}/>
+        <Banner buttonText={ isFindingLocation ? "Locating ..." : "View stores nearby "} handleOnClick={changeButton}/>
+         
+        { lErrorMsg && <p>Something went wrong: {lErrorMsg}</p>  }
          <div className={styles.heroImage}>
+         {/* {coffeeStoresError && <p>Something went wrong: {coffeeStoresError}</p>} */}
+
         <Image src="/static/hero-image.png" width={700} height={400}/>
         </div>
 
         {props.coffeeStores.length >0 && (
-        <>
+        <div className={styles.sectionWrapper}>
         <h2 className={styles.heading2}>Toronto Stores</h2>
 
         <div className={styles.cardLayout}>
@@ -64,7 +68,7 @@ export default function Home(props) {
              />) ;
               })}
         </div>  
-          </> )}
+          </div> )}
 
       </main>
     </div>

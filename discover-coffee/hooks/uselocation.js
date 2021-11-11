@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 
 const useGeoLocation  = () => { 
     const [lErrorMsg , setLocationErrorMsg ] = useState(''); 
-
     const [latLong, setlatLong] = useState('') ; 
+    const [isFindingLocation, setIsFindingLocation] = useState(false)
 
     const success = (position) => {
         const latitude = position.coords.latitude;
@@ -11,14 +11,18 @@ const useGeoLocation  = () => {
 
         setlatLong(`${latitude}` ,`${longitude}`);
         setLocationErrorMsg('');
+        setIsFindingLocation(false);
     }
 
     const error = () => {
-            setLocationErrorMsg("Unable to retrieve your location");
+        setIsFindingLocation(false);
+        setLocationErrorMsg("Unable to retrieve your location");
 
     }
 
     const handleLocation = () => {
+        setIsFindingLocation(true);
+
         if (!navigator.geolocation) {
             setLocationErrorMsg("Geolocation is not supported by your browser");
             setIsFindingLocation(false);
@@ -32,6 +36,7 @@ const useGeoLocation  = () => {
         latLong ,
         handleLocation , 
         lErrorMsg , 
+        isFindingLocation , 
     }
 }
 
