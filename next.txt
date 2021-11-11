@@ -54,3 +54,4 @@ Foursquare api can give you details of places
 upsplash modules for a vareity of Js functions via upsplash   unsplash-js 
 we need to call server side code in getStaticprops 
 refer unspalsh API docs for more clarity 
+to get location add the geolocation API 

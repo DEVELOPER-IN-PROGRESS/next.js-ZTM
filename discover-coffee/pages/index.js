@@ -6,6 +6,7 @@ import Card from '../components/card/card' ;
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { fetchCoffeeStores } from '../lib/coffee-store';
+import useGeoLocation from '../hooks/uselocation';
 
 
 export async function getStaticProps(){
@@ -25,8 +26,13 @@ export async function getStaticProps(){
 
 export default function Home(props) {
   console.log(props);
+
+  const {handleLocation ,latLong , lErrorMsg  } =  useGeoLocation() ; 
+  console.log({latLong , lErrorMsg}) ; 
+
   const changeButton = () => {
     console.log('Button clicked');
+      useGeoLocation();
   }
   return (
     <div className={styles.container}>

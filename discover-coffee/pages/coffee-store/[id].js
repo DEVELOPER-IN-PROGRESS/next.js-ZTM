@@ -49,7 +49,7 @@ const CoffeeStore = (props) => {
       return  (<div>Loading...</div>);
    }
 
-   const {location , name , neighbourhood , imgUrl } = props.coffeeStore ;
+   const {location , address  , name , neighbourhood , imgUrl } = props.coffeeStore ;
 
    console.log('Props' ,props )
 
