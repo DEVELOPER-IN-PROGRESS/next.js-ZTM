@@ -49,7 +49,7 @@ const CoffeeStore = (props) => {
       return  (<div>Loading...</div>);
    }
 
-   const {location , name , neighborhood , imgUrl } = props.coffeeStore ;
+   const {location , name , neighbourhood , imgUrl } = props.coffeeStore ;
 
    console.log('Props' ,props )
 
@@ -96,7 +96,7 @@ const CoffeeStore = (props) => {
               />
               <p className={styles.text}>{location.address}</p>
             </div>
-            {location.neighborhood && (
+            {location.neighbourhood && (
               <div className={styles.iconWrapper}>
                 <Image
                   src="/static/icons/nearMe.svg"
@@ -104,7 +104,7 @@ const CoffeeStore = (props) => {
                   height="24"
                   alt="near me icon"
                 />
-                <p className={styles.text}>{location.neighborhood}</p>
+                <p className={styles.text}>{location.neighbourhood}</p>
 
               </div>
             )}
