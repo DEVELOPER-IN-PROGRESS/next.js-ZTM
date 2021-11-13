@@ -7,6 +7,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import useGeoLocation from '../hooks/uselocation';
+import { useEffect } from 'react';
 
 
 export async function getStaticProps(){
@@ -29,6 +30,19 @@ export default function Home(props) {
 
   const {handleLocation ,latLong , lErrorMsg  , isFindingLocation } =  useGeoLocation() ; 
   console.log({latLong , lErrorMsg}) ; 
+
+  useEffect( async() =>{
+      if(latLong){
+         try {
+           const fetchedCoffeeStores = await fetchCoffeeStores(latLong) ;
+
+           console.log("aspet", { fetchedCoffeeStores });
+         }
+         catch(error){
+           console.error({error});
+         }
+      }
+  },[latLong]) ;
 
   const changeButton = () => {
     console.log('Button clicked');

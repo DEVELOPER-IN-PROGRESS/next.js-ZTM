@@ -2,11 +2,11 @@ import { createApi } from 'unsplash-js' ;
 
 //node server 
 const unsplashApi = createApi({
-  accessKey: process.env.UNSPLASH_ACCESS, 
+  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS, 
 })
 
 const getUrlfn = (ll, query , limit) => {
-  return `https://api.foursquare.com/v2/venues/search?ll=${ll}&query=${query}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&v=20211108&limit=${limit}` ;
+  return `https://api.foursquare.com/v2/venues/search?ll=${ll}&query=${query}&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&client_secret=${process.env.NEXT_PUBLIC_CLIENT_SECRET}&v=20211108&limit=${limit}` ;
 }
 
 
@@ -21,10 +21,10 @@ return  unsplashResults.map(result => result.urls['small']);
 };
 
 
-export const fetchCoffeeStores = async () => {
+export const fetchCoffeeStores = async (latLong ="43.65 , -79.395" ) => {
   
   const photoList = await  getApiPhotos();
-const response = await  fetch( getUrlfn("43.65 , -79" , "coffee store" , 6) )
+const response = await  fetch( getUrlfn(latLong , "coffee store" , 6) )
 
 const data =await  response.json() 
 console.log("data" , data);
