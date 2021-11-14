@@ -9,7 +9,7 @@ const useGeoLocation  = () => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        setlatLong(`${latitude}` ,`${longitude}`);
+        setlatLong(`${latitude} , ${longitude}`);
         setLocationErrorMsg('');
         setIsFindingLocation(false);
     }

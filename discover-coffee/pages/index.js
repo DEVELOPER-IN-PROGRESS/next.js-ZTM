@@ -7,7 +7,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import useGeoLocation from '../hooks/uselocation';
-import { useEffect } from 'react';
+import { useEffect ,useState } from 'react';
 
 
 export async function getStaticProps(){
@@ -29,17 +29,23 @@ export default function Home(props) {
   console.log(props);
 
   const {handleLocation ,latLong , lErrorMsg  , isFindingLocation } =  useGeoLocation() ; 
+
+  const [coffeeStores, setCoffeeStores] = useState('');
+
+  const [coffeeStoresError, setCoffeeStoresError] = useState(null);
+
   console.log({latLong , lErrorMsg}) ; 
 
   useEffect( async() =>{
       if(latLong){
          try {
-           const fetchedCoffeeStores = await fetchCoffeeStores(latLong) ;
-
+           const fetchedCoffeeStores = await fetchCoffeeStores(latLong ,30) ;
+           setCoffeeStores(fetchedCoffeeStores); 
            console.log("aspet", { fetchedCoffeeStores });
          }
          catch(error){
            console.error({error});
+           setCoffeeStoresError(error.message);
          }
       }
   },[latLong]) ;
@@ -61,10 +67,28 @@ export default function Home(props) {
          
         { lErrorMsg && <p>Something went wrong: {lErrorMsg}</p>  }
          <div className={styles.heroImage}>
-         {/* {coffeeStoresError && <p>Something went wrong: {coffeeStoresError}</p>} */}
+         {coffeeStoresError && <p>Something went wrong: {coffeeStoresError}</p>}
 
         <Image src="/static/hero-image.png" width={700} height={400}/>
         </div>
+
+        {coffeeStores.length >0 && (
+        <div className={styles.sectionWrapper}>
+        <h2 className={styles.heading2}>Stores Near Me</h2>
+
+        <div className={styles.cardLayout}>
+          {
+            coffeeStores.map( (coffeestore)=>{
+               return(<Card 
+                key={coffeestore.id}
+               name={coffeestore.name}
+                href = {`/coffee-store/${coffeestore.id}`}
+                 imgUrl={coffeestore.imgUrl || "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"} 
+               className={styles.card}
+             />) ;
+              })}
+        </div>  
+          </div> )}
 
         {props.coffeeStores.length >0 && (
         <div className={styles.sectionWrapper}>

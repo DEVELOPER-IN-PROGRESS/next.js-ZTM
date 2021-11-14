@@ -15,11 +15,13 @@ export async  function getStaticProps(staticProps){
    const params = staticProps.params ; 
    console.log("parameter" , params) ; 
    const coffeeStores = await fetchCoffeeStores() ; 
+   const findCoffeeStoreById =   coffeeStores.find( (coffeeStores) => {
+    return coffeeStores.id.toString() === params.id 
+ })
+
    return {
       props:{
-         coffeeStore :  coffeeStores.find( (coffeeStores) => {
-            return coffeeStores.id.toString() === params.id 
-         })
+         coffeeStore : findCoffeeStoreById ? findCoffeeStoreById : { }  ,
       }
    }
 }

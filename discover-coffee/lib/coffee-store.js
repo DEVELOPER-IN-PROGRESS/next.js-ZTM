@@ -13,7 +13,7 @@ const getUrlfn = (ll, query , limit) => {
 const getApiPhotos = async () => {
   const photos = await unsplashApi.search.getPhotos({
     query:'coffee shop',
-    per_page: '10', 
+    per_page: '40', 
 }); 
 const unsplashResults = photos.response.results ; 
 return  unsplashResults.map(result => result.urls['small']);
@@ -21,10 +21,10 @@ return  unsplashResults.map(result => result.urls['small']);
 };
 
 
-export const fetchCoffeeStores = async (latLong ="43.65 , -79.395" ) => {
+export const fetchCoffeeStores = async (latLong ="43.65 , -79.395", limit = 6 ) => {
   
   const photoList = await  getApiPhotos();
-const response = await  fetch( getUrlfn(latLong , "coffee store" , 6) )
+const response = await  fetch( getUrlfn(latLong , "coffee store" , limit ) )
 
 const data =await  response.json() 
 console.log("data" , data);

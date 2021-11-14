@@ -62,3 +62,6 @@ In case of any environment variables error . env.local  has its scope limited to
 the moment when browser requests for env.local  we get an error so we need to prefix the env.local variables with  NEXT_PUBLIC_ prefix
 
 TIP:: Restart the server whenever edits are made to  .env.local  file 
+
+in nextjs in order  to share the state between different pages we need to have something like a global store to hold the state . 
+We can use the context api in react 
