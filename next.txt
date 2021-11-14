@@ -64,4 +64,7 @@ the moment when browser requests for env.local  we get an error so we need to pr
 TIP:: Restart the server whenever edits are made to  .env.local  file 
 
 in nextjs in order  to share the state between different pages we need to have something like a global store to hold the state . 
-We can use the context api in react 
+We can use the context api in react . Context API
+
+inorder to use context api inthis application we need to set latitude and longitude in 2 different locations  specifically  .
+a local react state is only specific to that particular page or a component 
